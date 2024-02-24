@@ -97,7 +97,7 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jbtnQuayLai.setBackground(new java.awt.Color(102, 255, 255));
+        jbtnQuayLai.setBackground(new java.awt.Color(102, 255, 102));
         jbtnQuayLai.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnQuayLai.setText("Quay lại");
         jbtnQuayLai.addActionListener(new java.awt.event.ActionListener() {
@@ -111,7 +111,7 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(204, 0, 51));
         jLabel1.setText("QUẢN LÝ HÓA ĐƠN XUẤT");
 
-        jtblHoaDonXuat.setBackground(new java.awt.Color(51, 255, 204));
+        jtblHoaDonXuat.setBackground(new java.awt.Color(102, 255, 102));
         jtblHoaDonXuat.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -123,30 +123,39 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jtblHoaDonXuat.addAncestorListener(new javax.swing.event.AncestorListener() {
+            public void ancestorAdded(javax.swing.event.AncestorEvent evt) {
+                jtblHoaDonXuatAncestorAdded(evt);
+            }
+            public void ancestorMoved(javax.swing.event.AncestorEvent evt) {
+            }
+            public void ancestorRemoved(javax.swing.event.AncestorEvent evt) {
+            }
+        });
         jScrollPane1.setViewportView(jtblHoaDonXuat);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Mã hóa đơn xuất");
+        jLabel2.setText("Mã hóa đơn xuất:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Mã sách");
+        jLabel3.setText("Mã sách:");
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel4.setText("Mã nhân viên");
+        jLabel4.setText("Mã nhân viên:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Ngày nhập");
+        jLabel5.setText("Ngày nhập:");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel6.setText("Đơn giá xuất");
+        jLabel6.setText("Đơn giá xuất:");
 
         jLabel7.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel7.setText("Số lượng xuất");
+        jLabel7.setText("Số lượng xuất:");
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel8.setText("Thành tiền");
+        jLabel8.setText("Thành tiền:");
 
-        jbtnThem.setBackground(new java.awt.Color(51, 255, 255));
+        jbtnThem.setBackground(new java.awt.Color(102, 255, 102));
         jbtnThem.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnThem.setText("Thêm hóa đơn");
         jbtnThem.addActionListener(new java.awt.event.ActionListener() {
@@ -155,7 +164,7 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
             }
         });
 
-        jbtnTimKiem.setBackground(new java.awt.Color(51, 255, 255));
+        jbtnTimKiem.setBackground(new java.awt.Color(102, 255, 102));
         jbtnTimKiem.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnTimKiem.setText("Tìm kiếm");
         jbtnTimKiem.addActionListener(new java.awt.event.ActionListener() {
@@ -172,7 +181,7 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
 
         jcmbMaSach.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", " " }));
 
-        jbtnSua.setBackground(new java.awt.Color(51, 255, 255));
+        jbtnSua.setBackground(new java.awt.Color(102, 255, 102));
         jbtnSua.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnSua.setText("Sửa");
         jbtnSua.addActionListener(new java.awt.event.ActionListener() {
@@ -181,7 +190,7 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
             }
         });
 
-        jbtnXoa.setBackground(new java.awt.Color(51, 255, 255));
+        jbtnXoa.setBackground(new java.awt.Color(102, 255, 102));
         jbtnXoa.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnXoa.setText("Xóa");
         jbtnXoa.addActionListener(new java.awt.event.ActionListener() {
@@ -213,41 +222,46 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(90, 90, 90)
                                 .addComponent(jbtnThem)))
-                        .addGap(107, 107, 107)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
-                                .addComponent(jbtnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 103, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(121, 121, 121)
-                                .addComponent(jbtnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 137, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(104, 104, 104)
-                                .addComponent(jbtnTimKiem))
-                            .addGroup(layout.createSequentialGroup()
+                                .addGap(107, 107, 107)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(jtfNgayXuat, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 138, Short.MAX_VALUE)
                                     .addComponent(jtfMaNV, javax.swing.GroupLayout.Alignment.LEADING)
                                     .addComponent(jtfMaHDX, javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(jcmbMaSach, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jcmbMaSach, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                .addComponent(jbtnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(11, 11, 11)))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(layout.createSequentialGroup()
                                 .addGap(170, 170, 170)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                    .addComponent(jLabel6)
                                     .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                    .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jLabel6, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(129, 129, 129)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jtfDonGiaX)
                                     .addComponent(jtfSoLuongX)
-                                    .addComponent(jtfThanhTien, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)))))
+                                    .addComponent(jtfThanhTien, javax.swing.GroupLayout.DEFAULT_SIZE, 128, Short.MAX_VALUE)))
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(86, 86, 86)
+                                .addComponent(jbtnXoa, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addGap(99, 99, 99)
+                                .addComponent(jbtnTimKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 141, javax.swing.GroupLayout.PREFERRED_SIZE))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(16, 16, 16)
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 1009, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(26, Short.MAX_VALUE))
+                .addContainerGap(22, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                    .addComponent(jbtnQuayLai)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 51, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jbtnQuayLai))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 95, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
@@ -364,6 +378,10 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
         }
         jtblHoaDonXuat.setModel(new TableHDXuat(timKiem));
     }//GEN-LAST:event_jbtnTimKiemActionPerformed
+
+    private void jtblHoaDonXuatAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jtblHoaDonXuatAncestorAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jtblHoaDonXuatAncestorAdded
 
     /**
      * @param args the command line arguments

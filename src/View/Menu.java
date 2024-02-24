@@ -37,7 +37,7 @@ public class Menu extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        jbtnQuanLySach.setBackground(new java.awt.Color(102, 255, 255));
+        jbtnQuanLySach.setBackground(new java.awt.Color(102, 255, 102));
         jbtnQuanLySach.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnQuanLySach.setText("Quản lý sách");
         jbtnQuanLySach.addActionListener(new java.awt.event.ActionListener() {
@@ -46,7 +46,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jbtnQuanLyTaiKhoan.setBackground(new java.awt.Color(102, 255, 255));
+        jbtnQuanLyTaiKhoan.setBackground(new java.awt.Color(102, 255, 102));
         jbtnQuanLyTaiKhoan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnQuanLyTaiKhoan.setText("Quản lý nhân viên");
         jbtnQuanLyTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +55,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jbtnQuanLyHoaDonNhap.setBackground(new java.awt.Color(102, 255, 255));
+        jbtnQuanLyHoaDonNhap.setBackground(new java.awt.Color(102, 255, 102));
         jbtnQuanLyHoaDonNhap.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnQuanLyHoaDonNhap.setText("Quản lý hóa đơn nhập");
         jbtnQuanLyHoaDonNhap.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +64,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jbtnThongKe.setBackground(new java.awt.Color(102, 255, 255));
+        jbtnThongKe.setBackground(new java.awt.Color(102, 255, 102));
         jbtnThongKe.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnThongKe.setText("Thống kê");
         jbtnThongKe.addActionListener(new java.awt.event.ActionListener() {
@@ -75,9 +75,10 @@ public class Menu extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(255, 204, 204));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setText("HỆ THỐNG QUẢN LÝ SÁCH CÔNG TY HỒNG HÀ");
+        jLabel1.setForeground(new java.awt.Color(255, 51, 51));
+        jLabel1.setText("HỆ THỐNG QUẢN LÝ SÁCH CÔNG TY CAMPUS\n");
 
-        jbtnQuanLyHoaDonXuat.setBackground(new java.awt.Color(51, 255, 255));
+        jbtnQuanLyHoaDonXuat.setBackground(new java.awt.Color(102, 255, 102));
         jbtnQuanLyHoaDonXuat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnQuanLyHoaDonXuat.setText("Quản lý hóa đơn xuất");
         jbtnQuanLyHoaDonXuat.addActionListener(new java.awt.event.ActionListener() {
@@ -86,7 +87,7 @@ public class Menu extends javax.swing.JFrame {
             }
         });
 
-        jbtnDangXuat.setBackground(new java.awt.Color(51, 255, 255));
+        jbtnDangXuat.setBackground(new java.awt.Color(102, 255, 102));
         jbtnDangXuat.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnDangXuat.setText("Đăng xuất");
         jbtnDangXuat.addActionListener(new java.awt.event.ActionListener() {
@@ -110,8 +111,8 @@ public class Menu extends javax.swing.JFrame {
                     .addComponent(jbtnQuanLySach, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addGap(43, 43, 43)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(jbtnThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                    .addComponent(jbtnDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addComponent(jbtnThongKe, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jbtnDangXuat, javax.swing.GroupLayout.DEFAULT_SIZE, 189, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addContainerGap(196, Short.MAX_VALUE)

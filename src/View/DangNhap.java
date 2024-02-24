@@ -54,14 +54,14 @@ public class DangNhap extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(102, 255, 102));
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(51, 0, 51));
+        jLabel1.setForeground(new java.awt.Color(255, 0, 0));
         jLabel1.setText("ĐĂNG NHẬP");
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel2.setText("Tên tài khoản");
+        jLabel2.setText("Tên tài khoản:");
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel3.setText("Mật khẩu");
+        jLabel3.setText("Mật khẩu:");
 
         jtfTenTaiKhoan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -69,7 +69,7 @@ public class DangNhap extends javax.swing.JFrame {
             }
         });
 
-        jbtnDangNhap.setBackground(new java.awt.Color(51, 255, 255));
+        jbtnDangNhap.setBackground(new java.awt.Color(102, 255, 102));
         jbtnDangNhap.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnDangNhap.setText("Đăng nhập");
         jbtnDangNhap.addActionListener(new java.awt.event.ActionListener() {
@@ -78,7 +78,7 @@ public class DangNhap extends javax.swing.JFrame {
             }
         });
 
-        jbtnHuy.setBackground(new java.awt.Color(102, 255, 255));
+        jbtnHuy.setBackground(new java.awt.Color(102, 255, 102));
         jbtnHuy.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jbtnHuy.setText("Hủy bỏ");
         jbtnHuy.addActionListener(new java.awt.event.ActionListener() {
@@ -114,11 +114,11 @@ public class DangNhap extends javax.swing.JFrame {
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jtfTenTaiKhoan)
                             .addComponent(jpsfMatKhau, javax.swing.GroupLayout.DEFAULT_SIZE, 261, Short.MAX_VALUE))))
-                .addContainerGap(147, Short.MAX_VALUE))
+                .addContainerGap(140, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 235, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(251, 251, 251))
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 182, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(270, 270, 270))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
