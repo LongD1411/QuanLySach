@@ -18,6 +18,7 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -61,7 +62,30 @@ public class QuanLyHoaDonNhap extends javax.swing.JFrame {
             Logger.getLogger(DangNhap.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-
+    public List<String> layMaSach(){
+        List<String> danhSach = new ArrayList<>();
+        try{
+            Connection conn = new ConnectionDatabase().getConn();
+            String sql = "select maSach from Sach";
+            Statement stm = (Statement) conn.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while(rs.next()){
+                String maSach = rs.getString("maSach");
+                danhSach.add(maSach);
+            }
+                       
+            }catch(Exception e){
+                e.printStackTrace();
+               }
+        return danhSach;
+    }
+    public void xuatMaSach(){
+        List<String> maSach = layMaSach();
+        jcmbMaSach.removeAllItems();
+        for(String string: maSach){
+            jcmbMaSach.addItem(string);
+        }
+    }
     public QuanLyHoaDonNhap() {
         initComponents();
         layHDN();
@@ -193,8 +217,6 @@ public class QuanLyHoaDonNhap extends javax.swing.JFrame {
                 jbtnTimHDActionPerformed(evt);
             }
         });
-
-        jcmbMaSach.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03" }));
 
         jbtnSua.setBackground(new java.awt.Color(102, 255, 102));
         jbtnSua.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N

@@ -155,6 +155,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jbtnQuanLyHoaDonNhapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnQuanLyHoaDonNhapActionPerformed
             QuanLyHoaDonNhap qlhdn = new QuanLyHoaDonNhap();
+            qlhdn.xuatMaSach();
             qlhdn.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jbtnQuanLyHoaDonNhapActionPerformed
@@ -167,6 +168,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jbtnQuanLyHoaDonXuatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnQuanLyHoaDonXuatActionPerformed
        QuanLyHoaDonXuat qlhdx = new QuanLyHoaDonXuat();
+       qlhdx.xuatMaSach();
             qlhdx.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jbtnQuanLyHoaDonXuatActionPerformed
@@ -177,6 +179,7 @@ public class Menu extends javax.swing.JFrame {
             this.dispose();
             DangNhap dn=new DangNhap();
             dn.setVisible(true);
+            
     }//GEN-LAST:event_jbtnDangXuatActionPerformed
 
     /**

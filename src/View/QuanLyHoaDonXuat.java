@@ -16,6 +16,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.table.DefaultTableModel;
@@ -62,6 +63,30 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
     }
      public void loadTable() {
         jtblHoaDonXuat.setModel(new TableHDXuat(ds));
+    }
+      public List<String> layMaSach(){
+        List<String> danhSach = new ArrayList<>();
+        try{
+            Connection conn = new ConnectionDatabase().getConn();
+            String sql = "select maSach from Sach";
+            Statement stm = (Statement) conn.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while(rs.next()){
+                String maSach = rs.getString("maSach");
+                danhSach.add(maSach);
+            }
+                       
+            }catch(Exception e){
+                e.printStackTrace();
+               }
+        return danhSach;
+    }
+    public void xuatMaSach(){
+        List<String> maSach = layMaSach();
+        jcmbMaSach.removeAllItems();
+        for(String string: maSach){
+            jcmbMaSach.addItem(string);
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -179,7 +204,11 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
             }
         });
 
-        jcmbMaSach.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03", " " }));
+        jcmbMaSach.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbMaSachActionPerformed(evt);
+            }
+        });
 
         jbtnSua.setBackground(new java.awt.Color(102, 255, 102));
         jbtnSua.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -382,6 +411,10 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
     private void jtblHoaDonXuatAncestorAdded(javax.swing.event.AncestorEvent evt) {//GEN-FIRST:event_jtblHoaDonXuatAncestorAdded
         // TODO add your handling code here:
     }//GEN-LAST:event_jtblHoaDonXuatAncestorAdded
+
+    private void jcmbMaSachActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbMaSachActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbMaSachActionPerformed
 
     /**
      * @param args the command line arguments
