@@ -162,6 +162,7 @@ public class Menu extends javax.swing.JFrame {
 
     private void jbtnThongKeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnThongKeActionPerformed
         ThongKeSach tk = new ThongKeSach();
+        tk.xuatMaSach();
             tk.setVisible(true);
             this.dispose();
     }//GEN-LAST:event_jbtnThongKeActionPerformed

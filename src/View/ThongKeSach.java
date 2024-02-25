@@ -16,8 +16,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -50,6 +52,32 @@ public class ThongKeSach extends javax.swing.JFrame {
             }
         } catch (SQLException ex) {
             Logger.getLogger(ThongKeSach.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    public List<String> layMaSach() {
+        List<String> danhSach = new ArrayList<>();
+        try {
+            Connection conn = new ConnectionDatabase().getConn();
+            String sql = "select maSach from Sach";
+            Statement stm = (Statement) conn.createStatement();
+            ResultSet rs = stm.executeQuery(sql);
+            while (rs.next()) {
+                String maSach = rs.getString("maSach");
+                danhSach.add(maSach);
+            }
+
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        return danhSach;
+    }
+
+    public void xuatMaSach() {
+        List<String> maSach = layMaSach();
+        jcmbMaSach.removeAllItems();
+        for (String string : maSach) {
+            jcmbMaSach.addItem(string);
         }
     }
 
@@ -169,8 +197,6 @@ public class ThongKeSach extends javax.swing.JFrame {
             }
         });
 
-        jcmbMaSach.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "01", "02", "03" }));
-
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -267,18 +293,18 @@ public class ThongKeSach extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnQuayLaiActionPerformed
 
     private void jbtnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnThemActionPerformed
-       String sql = "Insert into  ThongKe values (?,?,?,?)";
-         Connection conn = new ConnectionDatabase().getConn();
+        String sql = "Insert into  ThongKe values (?,?,?,?)";
+        Connection conn = new ConnectionDatabase().getConn();
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(1, jtfMaTK.getText());
             pst.setString(3, jtfNgayTK.getText());
             pst.setInt(4, Integer.valueOf(jtfSoLuongTon.getText()));
-            pst.setString(2,(String) jcmbMaSach.getSelectedItem());             
+            pst.setString(2, (String) jcmbMaSach.getSelectedItem());
             pst.executeUpdate();
 
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Đã có mã thống kê, chọn mã khácy");
         }
         ds.clear();
         layThongKe();
@@ -286,14 +312,14 @@ public class ThongKeSach extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnThemActionPerformed
 
     private void jbtnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSuaActionPerformed
-        String sql = "Update ThongKe set ngayTK=? ,maSach=? ,soLuongTon=?  where maTK=?";
-         Connection conn = new ConnectionDatabase().getConn();
+        String sql = "Update ThongKe set ngayThongKe=? ,maSach=? ,soLuongTon=?  where maThongKe=?";
+        Connection conn = new ConnectionDatabase().getConn();
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(4, jtfMaTK.getText());
             pst.setString(1, jtfNgayTK.getText());
             pst.setInt(3, Integer.valueOf(jtfSoLuongTon.getText()));
-            pst.setString(2,(String) jcmbMaSach.getSelectedItem());         
+            pst.setString(2, (String) jcmbMaSach.getSelectedItem());
             pst.executeUpdate();
 
         } catch (SQLException ex) {
@@ -305,12 +331,12 @@ public class ThongKeSach extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnSuaActionPerformed
 
     private void jbtnXoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnXoaActionPerformed
-        String sql = "Delete ThongKe where maTK=?";
-         Connection conn = new ConnectionDatabase().getConn();
+        String sql = "Delete ThongKe where maThongKe=?";
+        Connection conn = new ConnectionDatabase().getConn();
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(1, jtfMaTK.getText());
-            pst.executeUpdate();           
+            pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QuanLySach.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -321,9 +347,18 @@ public class ThongKeSach extends javax.swing.JFrame {
 
     private void jbtnTimKiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnTimKiemActionPerformed
         ArrayList<ThongKe> timKiem = new ArrayList<>();
-        for(ThongKe s : ds){
-            if(jtfMaTK.getText().equals(s.getMaTK())){
+        for (ThongKe s : ds) {
+            if (jtfMaTK.getText().equals(s.getMaTK())) {
                 timKiem.add(s);
+                jtfNgayTK.setText(s.getNgayTK());
+                jtfSoLuongTon.setText(String.valueOf(s.getSoLuongTon()));
+                for (int i = 0; i < jcmbMaSach.getItemCount(); i++) {
+                    if (jcmbMaSach.getItemAt(i).toString().equals(s.getMaSach())) {
+                        jcmbMaSach.setSelectedIndex(i);
+                        break;
+                    }
+                }
+
             }
         }
         jtblThongKe.setModel(new TableThongKe(timKiem));

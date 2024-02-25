@@ -18,6 +18,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -296,7 +297,7 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
             pst.executeUpdate();
 
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyNhanVien.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Đã có mã nhân viên, chọn mã nhân viên khác");
         }
         ds.clear();
         layTaiKhoan();
@@ -343,6 +344,11 @@ public class QuanLyNhanVien extends javax.swing.JFrame {
         for(TaiKhoan s : ds){
             if(jtfMaNV.getText().equals(s.getMaNV())){
                 timKiem.add(s);
+                jtfEmail.setText(s.getEmail());
+                jtfDiaChi.setText(s.getDiaChi());
+                jtfSDT.setText(s.getSdt());
+                jtfTenNV.setText(s.getTenNV());
+                
             }
         }
         jtblTaiKhoan.setModel(new TableTaiKhoan(timKiem));

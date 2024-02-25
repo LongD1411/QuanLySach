@@ -17,6 +17,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -37,7 +38,7 @@ public class QuanLySach extends javax.swing.JFrame {
     public void laySach() {
         String sql = "select * from Sach";
 
-         Connection conn = new ConnectionDatabase().getConn();
+        Connection conn = new ConnectionDatabase().getConn();
         Statement stm;
         try {
             stm = (Statement) conn.createStatement();
@@ -48,18 +49,19 @@ public class QuanLySach extends javax.swing.JFrame {
                 String nhaXB = rs.getString("nhaXuatBan");
                 String theLoai = rs.getString("theLoai");
                 int soTrang = rs.getInt("soTrang");
-                String dotuoi=rs.getString("doTuoi");
-                Sach sach = new Sach(maSach,tenSach,nhaXB,theLoai,soTrang,dotuoi);
+                String dotuoi = rs.getString("doTuoi");
+                Sach sach = new Sach(maSach, tenSach, nhaXB, theLoai, soTrang, dotuoi);
                 ds.add(sach);
             }
         } catch (SQLException ex) {
             Logger.getLogger(QuanLySach.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-     public void loadTable() {
+
+    public void loadTable() {
         jtblSach.setModel(new TableSach(ds));
     }
-     
+
     public QuanLySach() {
         initComponents();
         laySach();
@@ -174,7 +176,12 @@ public class QuanLySach extends javax.swing.JFrame {
         });
 
         jcmbNhaXuatBan.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jcmbNhaXuatBan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kim Đồng", "Bình Minh", "Giáo dục", " " }));
+        jcmbNhaXuatBan.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Kim Đồng", "Bình Minh", "Giáo Dục", "Thiếu Niên" }));
+        jcmbNhaXuatBan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jcmbNhaXuatBanActionPerformed(evt);
+            }
+        });
 
         jbtnQuayLai.setBackground(new java.awt.Color(102, 255, 102));
         jbtnQuayLai.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
@@ -192,7 +199,7 @@ public class QuanLySach extends javax.swing.JFrame {
         jLabel8.setText("Lứa tuổi:");
 
         jcmbDoTuoi.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jcmbDoTuoi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thiếu nhi", "Mấu giáo", "Tuổi mới lớn" }));
+        jcmbDoTuoi.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Thiếu nhi", "Mấu giáo", "Tuổi mới lớn", "Người lớn" }));
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -212,11 +219,14 @@ public class QuanLySach extends javax.swing.JFrame {
                             .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(85, 85, 85)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addComponent(jcmbDoTuoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGroup(layout.createSequentialGroup()
-                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                    .addComponent(jcmbTheLoai, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jtfMaSach)
-                                    .addComponent(jtfTenSach))
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(jcmbNhaXuatBan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jtfSoTrang, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jcmbTheLoai, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jtfMaSach, javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jtfTenSach, javax.swing.GroupLayout.Alignment.LEADING))
                                 .addGap(99, 99, 99)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addGroup(layout.createSequentialGroup()
@@ -227,11 +237,7 @@ public class QuanLySach extends javax.swing.JFrame {
                                 .addGap(77, 77, 77)
                                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                                     .addComponent(jbtnTmKiem, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(jbtnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                            .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jtfSoTrang, javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jcmbNhaXuatBan, javax.swing.GroupLayout.Alignment.LEADING, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                            .addComponent(jcmbDoTuoi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                    .addComponent(jbtnXoa, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(25, 25, 25)
                         .addComponent(jbtnQuayLai)
@@ -270,9 +276,9 @@ public class QuanLySach extends javax.swing.JFrame {
                             .addComponent(jbtnSua, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jbtnTmKiem, javax.swing.GroupLayout.PREFERRED_SIZE, 39, javax.swing.GroupLayout.PREFERRED_SIZE)))
                     .addGroup(layout.createSequentialGroup()
-                        .addGap(20, 20, 20)
+                        .addGap(26, 26, 26)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(jcmbTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, 34, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jcmbTheLoai, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel4))))
                 .addGap(17, 17, 17)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
@@ -298,14 +304,14 @@ public class QuanLySach extends javax.swing.JFrame {
     }//GEN-LAST:event_jtfTenSachActionPerformed
 
     private void jbtnQuayLaiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnQuayLaiActionPerformed
-            Menu mn = new Menu();
-            mn.setVisible(true);
-            this.dispose();
+        Menu mn = new Menu();
+        mn.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jbtnQuayLaiActionPerformed
 
     private void jbtnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnThemActionPerformed
         String sql = "Insert into  Sach values (?,?,?,?,?,?)";
-       Connection conn = new ConnectionDatabase().getConn();
+        Connection conn = new ConnectionDatabase().getConn();
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(1, jtfMaSach.getText());
@@ -315,9 +321,9 @@ public class QuanLySach extends javax.swing.JFrame {
             pst.setInt(5, Integer.valueOf(jtfSoTrang.getText()));
             pst.setString(6, (String) jcmbDoTuoi.getSelectedItem());
             pst.executeUpdate();
-            
-        } catch (SQLException ex) {
-            Logger.getLogger(QuanLySach.class.getName()).log(Level.SEVERE, null, ex);
+
+        } catch (Exception ex) {
+            JOptionPane.showMessageDialog(null, "Đã có mã sách, chọn mã khác");
         }
         ds.clear();
         laySach();
@@ -325,8 +331,8 @@ public class QuanLySach extends javax.swing.JFrame {
     }//GEN-LAST:event_jbtnThemActionPerformed
 
     private void jbtnSuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jbtnSuaActionPerformed
-       String sql = "Update  Sach set tenSach=? ,nhaXuatBan=? ,theLoai=? ,soTrang=?, doTuoi=? where maSach=?";
-         Connection conn = new ConnectionDatabase().getConn();
+        String sql = "Update  Sach set tenSach=? ,nhaXuatBan=? ,theLoai=? ,soTrang=?, doTuoi=? where maSach=?";
+        Connection conn = new ConnectionDatabase().getConn();
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(1, jtfTenSach.getText());
@@ -334,9 +340,9 @@ public class QuanLySach extends javax.swing.JFrame {
             pst.setString(3, (String) jcmbTheLoai.getSelectedItem());
             pst.setString(2, (String) jcmbNhaXuatBan.getSelectedItem());
             pst.setInt(4, Integer.valueOf(jtfSoTrang.getText()));
-             pst.setString(5, (String) jcmbDoTuoi.getSelectedItem());
+            pst.setString(5, (String) jcmbDoTuoi.getSelectedItem());
             pst.executeUpdate();
-            
+
         } catch (SQLException ex) {
             Logger.getLogger(QuanLySach.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -351,7 +357,7 @@ public class QuanLySach extends javax.swing.JFrame {
         try {
             pst = conn.prepareStatement(sql);
             pst.setString(1, jtfMaSach.getText());
-            pst.executeUpdate();           
+            pst.executeUpdate();
         } catch (SQLException ex) {
             Logger.getLogger(QuanLySach.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -363,14 +369,40 @@ public class QuanLySach extends javax.swing.JFrame {
     private void jbtnTmKiemMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jbtnTmKiemMouseClicked
         // TODO add your handling code here:
         ArrayList<Sach> timKiem = new ArrayList<>();
-        for(Sach s : ds){
-            if(jtfMaSach.getText().equals(s.getMaSach())){
+        for (Sach s : ds) {
+            if (jtfMaSach.getText().equals(s.getMaSach())) {
                 timKiem.add(s);
+                jtfSoTrang.setText(String.valueOf(s.getSoTrang()));
+                jtfTenSach.setText(s.getTenSach());
+                for (int i = 0; i < jcmbNhaXuatBan.getItemCount(); i++) {
+                    if (jcmbNhaXuatBan.getItemAt(i).toString().equals(s.getNhaXB())) {
+                        System.out.println(s.getNhaXB());
+                        jcmbNhaXuatBan.setSelectedIndex(i);
+                        break;
+                    }
+                }
+                for (int i = 0; i < jcmbDoTuoi.getItemCount(); i++) {
+                    if (jcmbDoTuoi.getItemAt(i).toString().equals(s.getDoTuoi())) {
+                        System.out.println(s.getNhaXB());
+                        jcmbDoTuoi.setSelectedIndex(i);
+                        break;
+                    }
+                }
+                for (int i = 0; i < jcmbTheLoai.getItemCount(); i++) {
+                    if (jcmbTheLoai.getItemAt(i).toString().equals(s.getTheLoai())) {
+                        System.out.println(s.getNhaXB());
+                        jcmbTheLoai.setSelectedIndex(i);
+                        break;
+                    }
+                }
             }
+            jtblSach.setModel(new TableSach(timKiem));
         }
-        jtblSach.setModel(new TableSach(timKiem));
-        
     }//GEN-LAST:event_jbtnTmKiemMouseClicked
+
+    private void jcmbNhaXuatBanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jcmbNhaXuatBanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jcmbNhaXuatBanActionPerformed
 
     /**
      * @param args the command line arguments

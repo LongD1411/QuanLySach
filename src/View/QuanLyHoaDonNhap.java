@@ -1,4 +1,4 @@
-/*
+    /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
@@ -366,7 +366,7 @@ public class QuanLyHoaDonNhap extends javax.swing.JFrame {
             pst.executeUpdate();
 
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyHoaDonNhap.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Đã có mã hóa đơn, chọn mã khác");
         }
         ds.clear();
         layHDN();
@@ -378,6 +378,17 @@ public class QuanLyHoaDonNhap extends javax.swing.JFrame {
         for (HoaDonNhap hd : ds) {
             if (jtfMaHD.getText().equals(hd.getMaHDN())) {
                 timKiem.add(hd);
+                jtfDonGia.setText(String.valueOf(hd.getDonGiaN()));
+                jtfMaNV.setText(hd.getMaNV());
+                jtfNgayLap.setText(hd.getNgayNhap());
+                jtfSoLuong.setText(String.valueOf(hd.getSoLuong()));
+                jtfThanhTien.setText(String.valueOf(hd.getThanhTien()));
+                for (int i = 0; i < jcmbMaSach.getItemCount(); i++) {
+                    if (jcmbMaSach.getItemAt(i).toString().equals(hd.getMaSach())) {
+                        jcmbMaSach.setSelectedIndex(i);
+                        break;
+                    }
+                }
             }
         }
         jtblHoaDonNhap.setModel(new TableHDNhap(timKiem));

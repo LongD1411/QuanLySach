@@ -38,9 +38,12 @@
                       </Group>
                       <EmptySpace min="-2" pref="85" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Group type="102" attributes="0">
-                              <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                                  <Component id="jcmbTheLoai" max="32767" attributes="0"/>
+                          <Component id="jcmbDoTuoi" min="-2" max="-2" attributes="0"/>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                                  <Component id="jcmbNhaXuatBan" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jtfSoTrang" alignment="0" max="32767" attributes="0"/>
+                                  <Component id="jcmbTheLoai" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jtfMaSach" alignment="0" max="32767" attributes="0"/>
                                   <Component id="jtfTenSach" alignment="0" max="32767" attributes="0"/>
                               </Group>
@@ -59,11 +62,6 @@
                                   <Component id="jbtnXoa" max="32767" attributes="0"/>
                               </Group>
                           </Group>
-                          <Group type="103" alignment="0" groupAlignment="1" max="-2" attributes="0">
-                              <Component id="jtfSoTrang" alignment="0" max="32767" attributes="0"/>
-                              <Component id="jcmbNhaXuatBan" alignment="0" max="32767" attributes="0"/>
-                          </Group>
-                          <Component id="jcmbDoTuoi" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <Group type="102" attributes="0">
@@ -116,9 +114,9 @@
                       </Group>
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
-                      <EmptySpace min="-2" pref="20" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="26" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="jcmbTheLoai" min="-2" pref="34" max="-2" attributes="0"/>
+                          <Component id="jcmbTheLoai" min="-2" max="-2" attributes="0"/>
                           <Component id="jLabel4" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
@@ -337,11 +335,14 @@
           <StringArray count="4">
             <StringItem index="0" value="Kim &#x110;&#x1ed3;ng"/>
             <StringItem index="1" value="B&#xec;nh Minh"/>
-            <StringItem index="2" value="Gi&#xe1;o d&#x1ee5;c"/>
-            <StringItem index="3" value=" "/>
+            <StringItem index="2" value="Gi&#xe1;o D&#x1ee5;c"/>
+            <StringItem index="3" value="Thi&#x1ebf;u Ni&#xea;n"/>
           </StringArray>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jcmbNhaXuatBanActionPerformed"/>
+      </Events>
       <AuxValues>
         <AuxValue name="JavaCodeGenerator_TypeParameters" type="java.lang.String" value="&lt;String&gt;"/>
       </AuxValues>
@@ -393,10 +394,11 @@
           <Font name="Tahoma" size="18" style="0"/>
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-          <StringArray count="3">
+          <StringArray count="4">
             <StringItem index="0" value="Thi&#x1ebf;u nhi"/>
             <StringItem index="1" value="M&#x1ea5;u gi&#xe1;o"/>
             <StringItem index="2" value="Tu&#x1ed5;i m&#x1edb;i l&#x1edb;n"/>
+            <StringItem index="3" value="Ng&#x1b0;&#x1edd;i l&#x1edb;n"/>
           </StringArray>
         </Property>
       </Properties>

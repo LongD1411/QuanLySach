@@ -19,6 +19,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -169,7 +170,7 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
         jLabel4.setText("Mã nhân viên:");
 
         jLabel5.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
-        jLabel5.setText("Ngày nhập:");
+        jLabel5.setText("Ngày xuất:");
 
         jLabel6.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
         jLabel6.setText("Đơn giá xuất:");
@@ -354,7 +355,7 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
             pst.executeUpdate();
 
         } catch (SQLException ex) {
-            Logger.getLogger(QuanLyHoaDonXuat.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Đã có mã hóa đơn, chọn mã khác");
         }
         ds.clear();
         layHDX();
@@ -403,6 +404,17 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
         for (HoaDonXuat hd : ds) {
             if (jtfMaHDX.getText().equals(hd.getMaHDX())) {
                 timKiem.add(hd);
+                jtfDonGiaX.setText(String.valueOf(hd.getDonGiaX()));
+                jtfMaNV.setText(hd.getMaNV());
+                jtfNgayXuat.setText(hd.getNgayXuat());
+                jtfSoLuongX.setText(String.valueOf(hd.getSoLuongX()));
+                jtfThanhTien.setText(String.valueOf(hd.getThanhTien()));
+                for (int i = 0; i < jcmbMaSach.getItemCount(); i++) {
+                    if (jcmbMaSach.getItemAt(i).toString().equals(hd.getMaSach())) {
+                        jcmbMaSach.setSelectedIndex(i);
+                        break;
+                    }
+                }
             }
         }
         jtblHoaDonXuat.setModel(new TableHDXuat(timKiem));
