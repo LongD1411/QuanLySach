@@ -322,8 +322,10 @@ public class QuanLySach extends javax.swing.JFrame {
             pst.setString(6, (String) jcmbDoTuoi.getSelectedItem());
             pst.executeUpdate();
 
-        } catch (Exception ex) {
-            JOptionPane.showMessageDialog(null, "Đã có mã sách, chọn mã khác");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, "Đã có mã sách,nhập mã khác");
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Nhập thiếu dữ liệu");
         }
         ds.clear();
         laySach();
@@ -436,7 +438,7 @@ public class QuanLySach extends javax.swing.JFrame {
             public void run() {
                 new QuanLySach().setVisible(true);
             }
-        });
+        }); 
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

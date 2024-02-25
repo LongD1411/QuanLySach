@@ -354,8 +354,10 @@ public class QuanLyHoaDonXuat extends javax.swing.JFrame {
             pst.setFloat(6, Float.valueOf(jtfThanhTien.getText()));
             pst.executeUpdate();
 
-        } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Đã có mã hóa đơn, chọn mã khác");
+        } catch (SQLException e) {
+            JOptionPane.showMessageDialog(null, "Đã có mã hóa đơn hoặc mã nhân viên không tồn tại");
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Nhập thiếu dữ liệu");
         }
         ds.clear();
         layHDX();

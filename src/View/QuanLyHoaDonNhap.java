@@ -366,7 +366,9 @@ public class QuanLyHoaDonNhap extends javax.swing.JFrame {
             pst.executeUpdate();
 
         } catch (SQLException ex) {
-            JOptionPane.showMessageDialog(null, "Đã có mã hóa đơn, chọn mã khác");
+            JOptionPane.showMessageDialog(null, "Đã có mã hóa đơn hoặc nhân viên không tồn tại");
+        }catch(NumberFormatException e){
+            JOptionPane.showMessageDialog(null, "Nhập thiếu dữ liệu");
         }
         ds.clear();
         layHDN();
